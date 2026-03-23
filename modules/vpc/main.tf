@@ -17,7 +17,7 @@ resource "aws_subnet" "public" {
 resource "aws_subnet" "private" {
     count = length(var.private_subnet)
     vpc_id = aws_vpc.vpc.id
-    cidr_block = var.var.private_subnet[count.index]
+    cidr_block = var.private_subnet[count.index]
     availability_zone = var.availability_zone[count.index]
     tags = {
       Name="private-subnet-${count.index}"
@@ -52,7 +52,7 @@ resource "aws_route_table" "privateRT" {
 resource "aws_route_table_association" "public_access" {
 count = length(aws_subnet.public)
 
-  subnet_id      = var.aws_subnet.public[count.index].id
+  subnet_id = aws_subnet.public[count.index].id
   route_table_id = aws_route_table.publicRT.id
 
 }

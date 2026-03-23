@@ -10,3 +10,5 @@ variable "user_name" {
     type = string
   
 }
+variable "subnet" {}
+variable "RDS-sg" {}

@@ -1,9 +1,6 @@
 resource "aws_db_subnet_group" "db_subnet" {
   name       = "my-db-subnet-group"
-  subnet_ids = [
-    aws_subnet.private.id,
-    aws_subnet.private2.id
-  ]
+  subnet_ids = [var.subnet]
 }
 resource "aws_db_instance" "db" {
   allocated_storage = 20
@@ -13,7 +10,7 @@ resource "aws_db_instance" "db" {
   password          = var.user_name
  
   db_subnet_group_name   = aws_db_subnet_group.db_subnet.name
-  vpc_security_group_ids = [aws_security_group.RDS-SG.id]
+  vpc_security_group_ids = [var.RDS-sg]
 
   skip_final_snapshot = true
 }
