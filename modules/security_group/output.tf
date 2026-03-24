@@ -1,9 +1,9 @@
-output "ALB-SG" {
+output "ALB_SG" {
   value = aws_security_group.ALB.id
 }
-output "backend-SG" {
+output "backend_SG" {
   value = aws_security_group.backend_SG.id
 }
-output "RDS-SG" {
+output "RDS_SG" {
   value = aws_security_group.rds_SG.id
 }

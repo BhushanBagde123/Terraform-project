@@ -3,6 +3,7 @@ resource "aws_vpc" "vpc" {
   tags = {
     Name="project-form"
   }
+  
 }
 resource "aws_subnet" "public" {
     count = length(var.public_subnet)
@@ -54,5 +55,12 @@ count = length(aws_subnet.public)
 
   subnet_id = aws_subnet.public[count.index].id
   route_table_id = aws_route_table.publicRT.id
+
+}
+resource "aws_route_table_association" "private_access" {
+count = length(aws_subnet.private)
+
+  subnet_id = aws_subnet.private[count.index].id
+  route_table_id = aws_route_table.privateRT.id
 
 }

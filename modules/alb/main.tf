@@ -2,6 +2,7 @@ resource "aws_lb" "alb" {
   name               = "form-alb"
   load_balancer_type = "application"
   subnets            = var.subnet_ids
+  security_groups = [var.alb_sg]
 }
 
 resource "aws_lb_target_group" "tg" {
